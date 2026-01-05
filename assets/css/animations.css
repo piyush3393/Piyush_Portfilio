@@ -1,0 +1,201 @@
+/* --- Root Variables (Fallback) --- */
+:root {
+    --primary: #3B82F6;
+    --secondary: #10B981;
+    --bg-dark: #0F172A;
+    --text-muted: #94A3B8;
+}
+
+/* --- Base Animation System --- */
+.animate {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.fade-in { animation: fadeIn 0.8s forwards; }
+.fade-up { animation: fadeUp 0.8s forwards; }
+.scale-in { animation: scaleIn 0.8s forwards; }
+.animate-pop-in { animation: popIn 0.8s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards; opacity: 0; }
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--primary);
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+/* --- Reveal System (Triggered by JS) --- */
+.reveal-fade-up,
+.reveal-slide-left,
+.reveal-scale-in,
+.reveal-stagger > * {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-fade-up { transform: translateY(40px); }
+.reveal-slide-left { transform: translateX(-40px); }
+.reveal-scale-in { transform: scale(0.9); }
+
+.reveal-active {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important;
+}
+
+/* --- Decorative Animations --- */
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+}
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* --- Specific Components --- */
+.coming-soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 2px dashed rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Responsive footer styles removed - now using Tailwind classes in HTML */
+
+/* --- Stagger Logic --- */
+.stagger-children > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { transition-delay: 0.3s; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-fade-up, .reveal-active, .animate-pop-in {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* --- Base Animation System --- */
+.animate { opacity: 0; will-change: opacity, transform; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+.fade-in { animation: fadeIn 0.8s forwards; }
+.fade-up { animation: fadeUp 0.8s forwards; }
+.scale-in { animation: scaleIn 0.8s forwards; }
+
+/* --- Reveal System --- */
+.reveal-fade-up, .reveal-slide-left, .reveal-scale-in, .reveal-stagger > * {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-fade-up { transform: translateY(40px); }
+.reveal-slide-left { transform: translateX(-40px); }
+.reveal-scale-in { transform: scale(0.9); }
+.reveal-active { opacity: 1 !important; transform: translate(0) scale(1) !important; }
+
+/* --- Typing Cursor --- */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- Decorative --- */
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+}
+.animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-fade-up, .reveal-active { transition: none !important; opacity: 1 !important; }
+}
+
+/* --- Animation States --- */
+.reveal-fade-up, .reveal-scale-in, .reveal-slide-left {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-fade-up { transform: translateY(50px); }
+.reveal-scale-in { transform: scale(0.9); }
+.reveal-slide-left { transform: translateX(-50px); }
+
+.reveal-active {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important;
+}
+
+/* --- Pulse for Image Glow --- */
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.1); }
+}
+.animate-pulse-slow { animation: pulse-slow 5s infinite; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .reveal-fade-up { transform: translateY(30px); }
+}
+
+.reveal-fade-up, .reveal-slide-left, .reveal-scale-in {
+    opacity: 0; will-change: transform, opacity;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-fade-up { transform: translateY(40px); }
+.reveal-slide-left { transform: translateX(-40px); }
+.reveal-scale-in { transform: scale(0.9); }
+.reveal-active { opacity: 1 !important; transform: translate(0) scale(1) !important; }
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+}
+.animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+/* --- Root Animations --- */
+.reveal-fade-up, .reveal-slide-left, .reveal-scale-in {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-fade-up { transform: translateY(50px); }
+.reveal-slide-left { transform: translateX(-50px); }
+.reveal-scale-in { transform: scale(0.9); }
+
+.reveal-active {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important;
+}
+
+/* --- Pulse Glow --- */
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+}
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-fade-up, .reveal-active {
+        transition: none !important;
+        opacity: 1 !important;
+    }
+}

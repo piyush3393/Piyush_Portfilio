@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    
+    <!-- COPYRIGHT & META INFO -->
+    <meta name="author" content="Piyush Deo">
+    <meta name="copyright" content="Piyush Deo">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Portfolio of Piyush Deo - Computer Engineering Student & Full Stack Developer">
+    
+    <!-- SECURITY: CONTENT SECURITY POLICY -->
+    <!-- This allows scripts only from your domain, Tailwind, FontAwesome, and Google -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
+
+    <title>Piyush Deo - Portfolio</title>
+    
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3B82F6",
+                        "secondary": "#10B981",
+                        "accent": "#F59E0B",
+                        "background-dark": "#0F172A",
+                        "text-secondary": "#94A3B8",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .bg-grid { background-size: 40px 40px; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: #3B82F6; transition: width 0.3s ease;
+        }
+        .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: white; }
+
+        /* Typing cursor styling */
+        .typing-cursor::after {
+            content: '|'; animation: blink 1s infinite; color: #3B82F6; margin-left: 2px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Mobile menu slide */
+        #mobile-menu { transition: transform 0.4s ease-in-out; z-index: 100; }
+        #mobile-menu.open { transform: translateX(0); }
+
+        body {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+        /* Allow selection only on inputs/textareas for contact form */
+        input, textarea {
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-body selection:bg-primary selection:text-white overflow-x-hidden w-full">
+    
+    <div class="fixed inset-0 bg-grid-pattern bg-grid pointer-events-none z-0 opacity-20"></div>
+
+    <header class="fixed top-0 z-50 w-full border-b border-white/10 bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto w-full flex h-20 items-center justify-between px-6 sm:px-8">
+            <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
+                    <span class="material-symbols-outlined text-2xl">code</span>
+                </div>
+                <span class="font-display text-xl sm:text-2xl font-bold tracking-tight whitespace-nowrap">Piyush Deo</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors" href="#hero">Home</a>
+                <a class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors" href="#about">About</a>
+                <a class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors" href="#education">Education</a>
+                <a class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors" href="#tech-stack">Tech Skills</a>
+                <a class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors" href="#projects">Projects</a>
+                <a class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors" href="#contact">Contact</a>
+            </nav>
+
+            <button id="menu-toggle" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-all">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-background-dark/95 backdrop-blur-xl translate-x-full md:hidden flex flex-col p-8">
+        <div class="flex justify-between items-center mb-12">
+            <span class="font-display text-2xl font-bold">Navigation</span>
+            <button id="menu-close" class="h-10 w-10 flex items-center justify-center rounded-lg bg-white/5"><span class="material-symbols-outlined text-3xl">close</span></button>
+        </div>
+        <nav class="flex flex-col gap-8 text-3xl font-display font-bold">
+            <a class="mobile-link text-text-secondary" href="#hero">Home</a>
+            <a class="mobile-link text-text-secondary" href="#about">About</a>
+            <a class="mobile-link text-text-secondary" href="#education">Education</a>
+            <a class="mobile-link text-text-secondary" href="#tech-stack">Tech Stack</a>
+            <a class="mobile-link text-text-secondary" href="#projects">Projects</a>
+            <a class="mobile-link text-text-secondary" href="#contact">Contact</a>
+        </nav>
+    </div>
+
+    <section id="hero" class="relative z-10 min-h-screen flex flex-col justify-center pt-24 lg:pt-0">
+        <div class="max-w-7xl mx-auto w-full px-6 sm:px-8 flex flex-col-reverse lg:flex-row items-center gap-12">
+            <div class="flex flex-1 flex-col items-center lg:items-start text-center lg:text-left gap-6">
+                <div class="reveal-fade-up inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold text-primary">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    Available for Projects
+                </div>
+                
+                <h1 class="reveal-fade-up font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] text-white lg:whitespace-nowrap">
+                    Hi, I’m <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Piyush Deo</span>
+                </h1>
+                
+                <div class="h-10">
+                    <h2 id="typing-text" class="font-body text-xl sm:text-3xl font-medium text-secondary typing-cursor"></h2>
+                </div>
+                
+                <p class="reveal-fade-up max-w-xl text-text-secondary/80 text-lg leading-relaxed">
+                    Computer Engineering student passionate about building user-centric web and mobile applications through clean code and thoughtful design.
+                </p>
+                
+                <div class="reveal-fade-up flex flex-wrap justify-center lg:justify-start gap-4 mt-4">
+                    <a href="#projects" class="magnetic-btn h-12 px-8 rounded-lg bg-primary text-white font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-blue-600 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">rocket_launch</span> View Work
+                    </a>
+                    <a href="#contact" class="magnetic-btn h-12 px-8 rounded-lg bg-secondary text-white font-bold flex items-center gap-2 shadow-lg shadow-secondary/20 hover:bg-emerald-600 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">mail</span> Contact Me
+                    </a>
+                </div>
+                
+                <div class="reveal-fade-up mt-8 flex items-center justify-center lg:justify-start gap-8 border-t border-white/10 pt-8 w-full">
+                    <div>
+                        <div class="counter text-3xl font-bold text-white" data-target="2">0</div>
+                        <div class="text-[10px] uppercase tracking-widest text-text-secondary font-bold">Years Exp</div>
+                    </div>
+                    <div>
+                        <div class="counter text-3xl font-bold text-white" data-target="3">0</div>
+                        <div class="text-[10px] uppercase tracking-widest text-text-secondary font-bold">Projects</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-1 flex justify-center lg:justify-end">
+                <div class="parallax-container relative">
+                    <div class="absolute inset-0 bg-primary/20 blur-[100px] rounded-full animate-pulse-slow"></div>
+                    <div class="relative h-64 w-64 sm:h-80 sm:w-80 lg:h-[450px] lg:w-[450px] aspect-square rounded-full border-2 border-primary/30 p-4 bg-background-dark/50 backdrop-blur-sm">
+                        <div class="parallax-element w-full h-full rounded-full overflow-hidden border border-white/10">
+                            <img alt="Piyush Deo" class="w-full h-full object-cover" src="assets/image/portfilio002.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto w-full px-6 sm:px-8">
+            <div class="text-center mb-16 reveal-fade-up">
+                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-3">About Me</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold">The Engineering Journey</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <div class="md:col-span-8 glass-card rounded-2xl p-8 reveal-fade-up">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-xl bg-accent/10 text-accent"><span class="material-symbols-outlined">history_edu</span></div>
+                        <h4 class="text-white text-2xl font-bold">My Story</h4>
+                    </div>
+                    <p class="text-text-secondary text-lg leading-relaxed mb-6">
+                        My journey began with a curiosity about how the web works, leading me to teach myself HTML, CSS, and JS. As I explored modern frameworks like <strong>React</strong> and <strong>Flutter</strong>, I discovered a passion for creating digital products that are both functional and visually appealing. Currently, as a Computer Engineering student, I apply this passion to build real-world solutions.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold">Computer Engineer</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold">Full Stack Dev</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold">Flutter Dev</span>
+                    </div>
+                </div>
+                <div class="md:col-span-4 glass-card rounded-2xl p-8 reveal-fade-up" style="transition-delay: 150ms">
+                    <div class="p-3 rounded-xl bg-accent/10 text-accent mb-6 w-fit"><span class="material-symbols-outlined">lightbulb</span></div>
+                    <h4 class="text-white text-2xl font-bold mb-4">Core Philosophy</h4>
+                    <p class="text-text-secondary">
+                        Great software sits at the intersection of clean code and real-world utility. I focus on maintainable architecture and products that genuinely help users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-24 bg-white/5">
+        <div class="max-w-4xl mx-auto w-full px-6 sm:px-8">
+            <h3 class="text-3xl font-bold mb-12 reveal-fade-up">Academic <span class="text-secondary">Timeline</span></h3>
+            <div class="space-y-12 border-l-2 border-white/10 ml-4 pl-8">
+                
+                <div class="relative reveal-slide-left">
+                    <div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-secondary shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
+                            <h4 class="text-xl font-bold text-white">Bachelor of Computer Engineering</h4>
+                            <span class="text-secondary text-sm font-bold bg-secondary/10 px-3 py-1 rounded-full">2024 – Present</span>
+                        </div>
+                        <p class="text-text-secondary">Nepal Engineering College • Focusing on Distributed Systems & App Development.</p>
+                    </div>
+                </div>
+
+                <div class="relative reveal-slide-left" style="transition-delay: 200ms">
+                    <div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-white/20"></div>
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
+                            <h4 class="text-xl font-bold text-white">+2 (Science / Computer)</h4>
+                            <span class="text-text-secondary text-sm font-bold bg-white/5 px-3 py-1 rounded-full">2022 – 2024</span>
+                        </div>
+                        <p class="text-text-secondary">Shikshadeep College • Foundation in Computer Science and Physics.</p>
+                    </div>
+                </div>
+
+                <div class="relative reveal-slide-left" style="transition-delay: 400ms">
+                    <div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-white/20"></div>
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
+                            <h4 class="text-xl font-bold text-white">Secondary Education (SEE)</h4>
+                            <span class="text-text-secondary text-sm font-bold bg-white/5 px-3 py-1 rounded-full">Completed 2022</span>
+                        </div>
+                        <p class="text-text-secondary">Shikshadeep School • Academic Excellence.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="tech-stack" class="py-24">
+        <div class="max-w-7xl mx-auto w-full px-6 sm:px-8 text-center">
+            <h3 class="text-4xl font-bold mb-16 reveal-fade-up">My Tech Skills</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4">
+                    <i class="fa-brands fa-react text-4xl text-primary"></i>
+                    <span class="font-bold">React.js</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Frontend</span>
+                </div>
+                
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 100ms">
+                    <i class="fa-brands fa-android text-4xl text-blue-400"></i>
+                    <span class="font-bold">Flutter</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Mobile</span>
+                </div>
+                
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 200ms">
+                    <i class="fa-brands fa-node-js text-4xl text-secondary"></i>
+                    <span class="font-bold">Node.js</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Backend</span>
+                </div>
+                
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 300ms">
+                    <i class="fa-solid fa-pen-ruler text-4xl text-accent"></i>
+                    <span class="font-bold">UI/UX</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Design</span>
+                </div>
+
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 400ms">
+                    <i class="fa-brands fa-html5 text-4xl text-orange-500"></i>
+                    <span class="font-bold">HTML & CSS</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Foundation</span>
+                </div>
+
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 500ms">
+                    <i class="fa-solid fa-fire text-4xl text-yellow-500"></i>
+                    <span class="font-bold">Firebase</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Cloud</span>
+                </div>
+
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 600ms">
+                    <i class="fa-solid fa-database text-4xl text-purple-400"></i>
+                    <span class="font-bold">SQL</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Database</span>
+                </div>
+
+                <div class="reveal-scale-in glass-card p-8 flex flex-col items-center gap-4" style="transition-delay: 700ms">
+                    <i class="fa-brands fa-git-alt text-4xl text-red-500"></i>
+                    <span class="font-bold">Git</span>
+                    <span class="text-[10px] text-text-secondary uppercase tracking-wider">Version Control</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-white/5">
+        <div class="max-w-7xl mx-auto w-full px-6 sm:px-8">
+            <h3 class="text-4xl font-bold text-center mb-16 reveal-fade-up">Featured Projects</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass-card group overflow-hidden rounded-2xl reveal-fade-up flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-primary/10">
+                        <div class="absolute inset-0 flex items-center justify-center text-primary/30">
+                            <span class="material-symbols-outlined text-6xl">map</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-bold">Our Guidebook</h4>
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-primary/20 text-primary">Live</span>
+                        </div>
+                        <p class="text-text-secondary text-sm mb-6 flex-1">A guide website for tourism and navigation, helping users explore new places easily.</p>
+                        
+                        <a href="https://piyush3450.github.io/ourguidebook/" target="_blank" class="w-full text-center py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-semibold text-sm flex items-center justify-center gap-2">
+                            Visit Website <span class="material-symbols-outlined text-base">open_in_new</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card group overflow-hidden rounded-2xl reveal-fade-up flex flex-col" style="transition-delay: 150ms">
+                    <div class="relative h-56 overflow-hidden bg-secondary/10">
+                        <div class="absolute inset-0 flex items-center justify-center text-secondary/30">
+                            <span class="material-symbols-outlined text-6xl">self_improvement</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-bold">Mindverse</h4>
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-accent/20 text-accent">Ongoing</span>
+                        </div>
+                        <p class="text-text-secondary text-sm mb-6 flex-1">A self-help and mental wellness app integrating modern technology to address real-world productivity challenges.</p>
+                        <button disabled class="w-full py-3 rounded-lg bg-white/5 border border-white/10 text-white/40 cursor-not-allowed font-semibold text-sm">
+                            In Development
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reveal-fade-up border-2 border-dashed border-white/20 rounded-2xl h-full flex flex-col items-center justify-center p-8 text-center group hover:border-primary/50 transition-colors" style="transition-delay: 300ms">
+                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-text-secondary">rocket_launch</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">Next Big Idea</h4>
+                    <p class="text-text-secondary text-sm">An upcoming project focused on solving real-world problems through technology. Stay tuned!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto w-full px-6 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Left Side: Info Cards -->
+            <div class="space-y-6">
+                <div class="reveal-fade-up mb-10">
+                    <h3 class="text-4xl lg:text-7xl font-bold leading-tight mb-4">Let's build <span class="text-primary">together.</span></h3>
+                    <p class="text-text-secondary text-lg">I'm currently available for freelance work and full-time positions.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Email Copy Card -->
+                    <div class="reveal-fade-up flex items-center gap-4 bg-white/5 border border-white/10 p-5 rounded-2xl group transition-all hover:border-primary/50">
+                        <div class="h-14 w-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-2xl group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-sm sm:text-base">Email Address</p>
+                            <p class="text-text-secondary text-xs sm:text-sm" id="email-text">piyushdev773@gmail.com</p>
+                        </div>
+                        <button id="copy-email" class="p-2 text-text-secondary hover:text-primary transition-all active:scale-90">
+                            <span class="material-symbols-outlined">content_copy</span>
+                        </button>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com/in/piyushdeo" target="_blank" class="reveal-fade-up flex items-center gap-4 bg-white/5 border border-white/10 p-5 rounded-2xl group transition-all hover:border-primary/50">
+                        <div class="h-14 w-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-2xl group-hover:bg-primary group-hover:text-white transition-all">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-sm sm:text-base">LinkedIn</p>
+                            <p class="text-text-secondary text-xs sm:text-sm">Professional profile</p>
+                        </div>
+                        <span class="material-symbols-outlined text-text-secondary">arrow_outward</span>
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/piyush3393" target="_blank" class="reveal-fade-up flex items-center gap-4 bg-white/5 border border-white/10 p-5 rounded-2xl group transition-all hover:border-primary/50">
+                        <div class="h-14 w-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-2xl group-hover:bg-primary group-hover:text-white transition-all">
+                            <i class="fab fa-github text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-sm sm:text-base">GitHub</p>
+                            <p class="text-text-secondary text-xs sm:text-sm">Open source projects</p>
+                        </div>
+                        <span class="material-symbols-outlined text-text-secondary">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Validated Web3Form -->
+            <div class="reveal-fade-up">
+                <form id="contact-form" class="glass-card p-8 lg:p-10 rounded-3xl space-y-6 group" novalidate>
+    
+    <!-- REMOVED: <input type="hidden" name="access_key" value="..."> -->
+    <!-- REPLACED WITH: Honeypot Anti-Spam (Bots will fill this, Web3Forms will reject it) -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+    <!-- Full Name -->
+    <div class="relative">
+        <label class="block text-sm font-medium text-text-secondary mb-2">
+            Full Name <span class="text-red-500">*</span>
+        </label>
+        <input type="text" name="name" required placeholder="Enter name" 
+            class="peer w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-primary focus:outline-none transition-all group-[.was-validated]:invalid:border-red-500">
+        <span class="absolute right-4 top-11 text-red-500 opacity-0 peer-invalid:group-[.was-validated]:opacity-100 transition-opacity pointer-events-none">
+            <span class="material-symbols-outlined">error</span>
+        </span>
+    </div>
+
+    <!-- Email Address -->
+    <div class="relative">
+        <label class="block text-sm font-medium text-text-secondary mb-2">
+            Email Address <span class="text-red-500">*</span>
+        </label>
+        <input type="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="yourname@example.com" 
+            class="peer w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-primary focus:outline-none transition-all group-[.was-validated]:invalid:border-red-500">
+        <span class="absolute right-4 top-11 text-red-500 opacity-0 peer-invalid:group-[.was-validated]:opacity-100 transition-opacity pointer-events-none">
+            <span class="material-symbols-outlined">error</span>
+        </span>
+    </div>
+
+    <!-- Message -->
+    <div class="relative">
+        <label class="block text-sm font-medium text-text-secondary mb-2">
+            Message <span class="text-red-500">*</span>
+        </label>
+        <textarea name="message" rows="4" required placeholder="How can I help you?" 
+            class="peer w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-primary focus:outline-none transition-all resize-none group-[.was-validated]:invalid:border-red-500"></textarea>
+    </div>
+
+    <button type="submit" id="submit-btn" class="w-full bg-primary hover:bg-blue-600 disabled:bg-slate-700 disabled:cursor-not-allowed py-5 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg shadow-primary/20">
+        <span id="btn-text">Send Message</span>
+        <span class="material-symbols-outlined text-xl">send</span>
+    </button>
+
+  
+    <div id="form-result" class="hidden mt-4 p-4 rounded-xl text-center text-sm font-bold transition-all border border-transparent">
+        <!-- Message will appear here via JS -->
+    </div>
+
+</form>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+    <footer class="py-12 bg-[#070B14] border-t border-white/10">
+        <div class="container mx-auto max-w-7xl px-6 flex flex-col items-center text-center gap-8">
+            <div class="font-display text-2xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Piyush Deo</div>
+            
+            <div class="flex gap-6">
+                <a href="https://github.com/piyush3393" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-primary transition-all"><i class="fab fa-github text-xl"></i></a>
+                <a href="https://linkedin.com/in/piyushdeo" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-primary transition-all"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://www.instagram.com/piyushdev675/" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-primary transition-all"><i class="fab fa-instagram text-xl"></i></a>
+            </div>
+
+            <p class="text-text-secondary text-sm">© 2026 Piyush Deo. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/animations.js"></script>
+    
+</body>
+</html>

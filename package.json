@@ -1,0 +1,29 @@
+{
+  "name": "piyush-deo-portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio Website of Piyush Deo - Computer Engineering Student",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piyushdeo/portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "web-design",
+    "computer-engineering",
+    "student",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Piyush Deo <piyushdev773@gmail.com>",
+  "license": "Copyright",
+  "copyright": "© 2026 Piyush Deo. All rights reserved.",
+  "bugs": {
+    "url": "https://github.com/piyushdeo/portfolio/issues"
+  }
+}
